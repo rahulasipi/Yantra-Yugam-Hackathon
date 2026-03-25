@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IteraGen — Profile</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <a href="/dashboard.html" class="brand" style="text-decoration: none; color: inherit">
+          <div class="brand-mark">
+            <img src="/logo.jpeg" alt="IteraGen" width="40" height="40" />
+          </div>
+          <h1>IteraGen</h1>
+        </a>
+        <a class="nav-link" href="/dashboard.html"><span class="icon">◆</span> Generator</a>
+        <a class="nav-link" href="/comparison.html"><span class="icon">⚖</span> Comparison</a>
+        <a class="nav-link" href="/library.html"><span class="icon">▣</span> Library</a>
+        <a class="nav-link active" href="/profile.html"><span class="icon">◎</span> Profile</a>
+        <div class="nav-spacer"></div>
+        <a class="nav-link" href="#settings" id="nav-settings"><span class="icon">⚙</span> Settings</a>
+        <button type="button" class="nav-link logout" id="btn-logout" style="border: none; width: 100%; background: none; cursor: pointer; text-align: left">
+          <span class="icon">⏻</span> Log out
+        </button>
+      </aside>
+      <div class="main-wrap">
+        <header class="topbar">
+          <span class="pill">Account</span>
+          <div class="user-chip">
+            <div class="avatar"></div>
+            <div>
+              <strong id="chip-name">Creator</strong><br />
+              <small id="chip-status">Signed in</small>
+            </div>
+          </div>
+        </header>
+        <main>
+          <h1 class="page-title">Your profile</h1>
+          <p class="page-sub">Saved apps, trust scores, badges, and feedback — all in one place.</p>
+          <p id="profile-msg" class="flash-msg"></p>
+
+          <div class="panel" id="panel-profile">
+            <h2>Workspace summary</h2>
+            <p class="inline-hint">Trust scores appear after you run a check on the generator.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.75rem">
+              <div class="stat-card"><strong id="prof-apps">—</strong> Saved apps</div>
+              <div class="stat-card"><strong id="prof-xp">—</strong> XP</div>
+              <div class="stat-card"><strong id="prof-badges">—</strong> Badges</div>
+            </div>
+            <h2 style="margin-top: 0.75rem">Badges you earned</h2>
+            <p class="inline-hint">Icons light up as you ship quality builds and move fast.</p>
+            <div id="profile-badges" class="badges-row" style="margin-top: 0.75rem"></div>
+            <h2 class="chart-title" style="margin-top: 0">Archive</h2>
+            <div class="table-wrap">
+              <table class="data">
+                <thead>
+                  <tr>
+                    <th>App</th>
+                    <th>Date</th>
+                    <th>Trust</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="archive-body"></tbody>
+              </table>
+            </div>
+
+            <h2 id="settings" style="margin-top: 1rem">Send feedback</h2>
+            <p class="inline-hint">Link feedback to a saved app to help prioritize improvements.</p>
+            <form id="form-feedback" class="form-stack">
+              <select id="fb-app" name="appId" required>
+                <option value="">Choose an app…</option>
+              </select>
+              <textarea name="comments" rows="3" placeholder="What worked? What should improve?" required></textarea>
+              <label class="field-label" for="fb-rating">Rating (1–5)</label>
+              <input id="fb-rating" name="rating" type="number" min="1" max="5" value="5" />
+              <button type="submit" class="btn btn-primary" style="width: auto">Submit feedback</button>
+            </form>
+            <div id="fb-success" class="feedback-success" aria-live="polite">
+              <span class="checkmark">✓</span>
+              <span>Thanks — your note was saved.</span>
+            </div>
+          </div>
+        </main>
+        <p class="footer-note">© IteraGen · Profile</p>
+      </div>
+    </div>
+    <script src="/js/api.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/auth-guard.js"></script>
+    <script src="/js/profile.js"></script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IteraGen — Comparison</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <a href="/dashboard.html" class="brand" style="text-decoration: none; color: inherit">
+          <div class="brand-mark">
+            <img src="/logo.jpeg" alt="IteraGen" width="40" height="40" />
+          </div>
+          <h1>IteraGen</h1>
+        </a>
+        <a class="nav-link" href="/dashboard.html"><span class="icon">◆</span> Generator</a>
+        <a class="nav-link active" href="/comparison.html"><span class="icon">⚖</span> Comparison</a>
+        <a class="nav-link" href="/library.html"><span class="icon">▣</span> Library</a>
+        <a class="nav-link" href="/profile.html"><span class="icon">◎</span> Profile</a>
+        <div class="nav-spacer"></div>
+        <a class="nav-link" href="/profile.html"><span class="icon">⚙</span> Settings</a>
+        <button type="button" class="nav-link logout" id="btn-logout" style="border: none; width: 100%; background: none; cursor: pointer; text-align: left">
+          <span class="icon">⏻</span> Log out
+        </button>
+      </aside>
+      <div class="main-wrap">
+        <header class="topbar">
+          <span class="pill">Comparison mode</span>
+          <div class="user-chip">
+            <div class="avatar"></div>
+            <div>
+              <strong id="chip-name">Creator</strong><br />
+              <small id="chip-status">Signed in</small>
+            </div>
+          </div>
+        </header>
+        <main>
+          <h1 class="page-title">Compare two versions</h1>
+          <p class="page-sub">
+            Pick two saved apps, preview them side by side, and review trust deltas. Flip each card to peek at the underlying scaffold
+            snippet.
+          </p>
+
+          <div class="panel" style="margin-bottom: 1rem">
+            <h2>Select apps</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem">
+              <div>
+                <label class="field-label" for="sel-a">Version A</label>
+                <select id="sel-a" style="width: 100%; padding: 0.5rem; border-radius: 8px; background: #0c111c; color: #e8eef7; border: 1px solid rgba(255,255,255,0.12)"></select>
+              </div>
+              <div>
+                <label class="field-label" for="sel-b">Version B</label>
+                <select id="sel-b" style="width: 100%; padding: 0.5rem; border-radius: 8px; background: #0c111c; color: #e8eef7; border: 1px solid rgba(255,255,255,0.12)"></select>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary" style="margin-top: 0.75rem; width: auto" id="btn-compare">Run comparison</button>
+            <p id="cmp-msg" class="flash-msg"></p>
+            <p id="forecast" style="margin-top: 0.5rem; font-size: 0.88rem; color: var(--muted)"></p>
+            <p id="delta" class="delta-badge" style="margin: 0.35rem 0 0"></p>
+            <div class="deploy-row">
+              <button type="button" class="btn btn-primary" id="btn-deploy-a">Deploy version A</button>
+              <button type="button" class="btn btn-violet" id="btn-deploy-b">Deploy version B</button>
+            </div>
+          </div>
+
+          <div class="compare-grid">
+            <div class="flip-scene flip-a">
+              <div class="flip-card" id="flip-a">
+                <div class="flip-card-inner">
+                  <div class="flip-face front">
+                    <div class="flip-toolbar">
+                      <span>Version A · Live preview</span>
+                      <button type="button" class="btn btn-ghost btn-flip" data-target="flip-a">Show code</button>
+                    </div>
+                    <div class="flip-frame">
+                      <iframe id="iframe-a" title="Version A" sandbox="allow-scripts allow-same-origin"></iframe>
+                    </div>
+                  </div>
+                  <div class="flip-face back">
+                    <div class="flip-toolbar">
+                      <span>Scaffold overview</span>
+                      <button type="button" class="btn btn-ghost btn-flip" data-target="flip-a">Back to preview</button>
+                    </div>
+                    <pre class="code-block" id="code-a">Generate a comparison to view scaffold details.</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="compare-mid">
+              <button type="button" class="btn btn-ghost" id="btn-swap" title="Swap selections">⇄</button>
+              <div style="text-align: center; font-size: 0.78rem; color: var(--muted)">Trust delta</div>
+            </div>
+
+            <div class="flip-scene flip-b">
+              <div class="flip-card" id="flip-b">
+                <div class="flip-card-inner">
+                  <div class="flip-face front">
+                    <div class="flip-toolbar">
+                      <span>Version B · Live preview</span>
+                      <button type="button" class="btn btn-ghost btn-flip" data-target="flip-b">Show code</button>
+                    </div>
+                    <div class="flip-frame">
+                      <iframe id="iframe-b" title="Version B" sandbox="allow-scripts allow-same-origin"></iframe>
+                    </div>
+                  </div>
+                  <div class="flip-face back">
+                    <div class="flip-toolbar">
+                      <span>Scaffold overview</span>
+                      <button type="button" class="btn btn-ghost btn-flip" data-target="flip-b">Back to preview</button>
+                    </div>
+                    <pre class="code-block" id="code-b">Generate a comparison to view scaffold details.</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="metrics-hub">
+            <div class="panel">
+              <h2>Trust radar</h2>
+              <svg id="radar-dual" xmlns="http://www.w3.org/2000/svg"></svg>
+              <p class="inline-hint">Blue: version A · Purple: version B</p>
+            </div>
+            <div class="panel">
+              <h2>Core metrics</h2>
+              <div id="group-bars"></div>
+            </div>
+          </div>
+        </main>
+        <p class="footer-note">© IteraGen · Comparison studio</p>
+      </div>
+    </div>
+    <script src="/js/api.js"></script>
+    <script src="/js/charts.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/auth-guard.js"></script>
+    <script src="/js/comparison.js"></script>
+  </body>
+</html>

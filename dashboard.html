@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IteraGen — Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <a href="/dashboard.html" class="brand" style="text-decoration: none; color: inherit">
+          <div class="brand-mark">
+            <img src="/logo.jpeg" alt="IteraGen" width="40" height="40" />
+          </div>
+          <h1>IteraGen</h1>
+        </a>
+        <a class="nav-link active" href="/dashboard.html"><span class="icon">◆</span> Generator</a>
+        <a class="nav-link" href="/comparison.html"><span class="icon">⚖</span> Comparison</a>
+        <a class="nav-link" href="/library.html"><span class="icon">▣</span> Library</a>
+        <a class="nav-link" href="/profile.html"><span class="icon">◎</span> Profile</a>
+        <div class="nav-spacer"></div>
+        <a class="nav-link" href="/profile.html#settings"><span class="icon">⚙</span> Settings</a>
+        <button type="button" class="nav-link logout" id="btn-logout" style="border: none; width: 100%; background: none; cursor: pointer; text-align: left">
+          <span class="icon">⏻</span> Log out
+        </button>
+      </aside>
+      <div class="main-wrap">
+        <header class="topbar">
+          <span class="pill">Build v2 · live</span>
+          <div class="user-chip">
+            <div class="avatar" aria-hidden="true"></div>
+            <div>
+              <strong id="chip-name">Creator</strong><br />
+              <small id="chip-status">Signed in</small>
+            </div>
+          </div>
+        </header>
+        <main>
+          <h1 class="page-title">Build your app from a prompt</h1>
+          <p class="page-sub">
+            Describe what you want, shape your form fields, then generate an interactive preview. Run a trust check to see clarity,
+            logic, and consistency scores.
+          </p>
+
+          <div class="grid-dashboard">
+            <div class="panel">
+              <h2>Your prompt</h2>
+              <label class="field-label" for="prompt">What should we build?</label>
+              <textarea id="prompt" class="input-prompt" placeholder="Enter your app idea..."></textarea>
+
+              <label class="field-label" for="refine" style="margin-top: 0.75rem">Refine (optional)</label>
+              <textarea
+                id="refine"
+                class="input-prompt"
+                style="min-height: 72px; animation: none"
+                placeholder="Tweak the idea and regenerate (feedback loop)..."
+              ></textarea>
+
+              <button type="button" class="btn btn-primary" id="btn-generate">Generate app</button>
+              <button type="button" class="btn btn-ghost" id="btn-validate" style="margin-top: 0.5rem">Run trust check</button>
+              <button type="button" class="btn btn-ghost" id="btn-preview" style="margin-top: 0.5rem; width: 100%">Preview</button>
+              <div id="dash-msg" class="flash-msg" role="status"></div>
+
+              <h2 style="margin-top: 1rem">Form builder</h2>
+              <p class="inline-hint">Add fields your generated UI should include.</p>
+              <div id="field-list" class="field-list"></div>
+              <button type="button" class="btn-dashed" id="btn-add-field">+ Add module</button>
+            </div>
+
+            <div class="panel">
+              <h2>Live preview</h2>
+              <div class="preview-frame-wrap">
+                <iframe id="preview" title="Generated app preview" sandbox="allow-scripts allow-same-origin"></iframe>
+              </div>
+              <div class="preview-status">
+                <span class="status-dot"><span class="dot"></span> Interface</span>
+                <span class="status-dot"><span class="dot"></span> Logic</span>
+                <span class="status-dot"><span class="dot warn"></span> Data flow</span>
+                <span class="status-dot"><span class="dot"></span> Styling</span>
+              </div>
+            </div>
+
+            <div class="panel col-trust">
+              <h2>Trust overview</h2>
+              <div class="trust-gauge-wrap" id="gauge-wrap"></div>
+              <div class="stat-cards">
+                <div class="stat-card"><strong>Security grade</strong> Based on structure checks.</div>
+                <div class="stat-card"><strong>Compliance hint</strong> Prototype — not legal advice.</div>
+              </div>
+              <p class="chart-title">Quality radar</p>
+              <svg id="radar" xmlns="http://www.w3.org/2000/svg"></svg>
+              <p class="chart-title">Your recent benchmarks</p>
+              <div id="bench-bars" class="bars"></div>
+            </div>
+          </div>
+        </main>
+        <p class="footer-note">© IteraGen · Prompt-to-app studio</p>
+      </div>
+    </div>
+    <script src="/js/api.js"></script>
+    <script src="/js/charts.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/auth-guard.js"></script>
+    <script src="/js/dashboard.js"></script>
+  </body>
+</html>

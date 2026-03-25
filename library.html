@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IteraGen — Library</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <a href="/dashboard.html" class="brand" style="text-decoration: none; color: inherit">
+          <div class="brand-mark">
+            <img src="/logo.jpeg" alt="IteraGen" width="40" height="40" />
+          </div>
+          <h1>IteraGen</h1>
+        </a>
+        <a class="nav-link" href="/dashboard.html"><span class="icon">◆</span> Generator</a>
+        <a class="nav-link" href="/comparison.html"><span class="icon">⚖</span> Comparison</a>
+        <a class="nav-link active" href="/library.html"><span class="icon">▣</span> Library</a>
+        <a class="nav-link" href="/profile.html"><span class="icon">◎</span> Profile</a>
+        <div class="nav-spacer"></div>
+        <a class="nav-link" href="/profile.html"><span class="icon">⚙</span> Settings</a>
+        <button type="button" class="nav-link logout" id="btn-logout" style="border: none; width: 100%; background: none; cursor: pointer; text-align: left">
+          <span class="icon">⏻</span> Log out
+        </button>
+      </aside>
+      <div class="main-wrap">
+        <header class="topbar">
+          <span class="pill">Your archives</span>
+          <div class="user-chip">
+            <div class="avatar"></div>
+            <div>
+              <strong id="chip-name">Creator</strong><br />
+              <small id="chip-status">Signed in</small>
+            </div>
+          </div>
+        </header>
+        <main>
+          <div class="library-hero">
+            <div>
+              <h1 class="page-title" style="margin-bottom: 0.25rem">Generated apps &amp; achievements</h1>
+              <p class="page-sub" style="margin-bottom: 0.5rem">
+                Every prototype you save shows up here. Earn badges as you ship quality builds and move fast.
+              </p>
+            </div>
+            <div>
+              <div class="stat-big" id="stat-assets">—</div>
+              <div style="font-size: 0.82rem; color: var(--muted)">Saved apps</div>
+              <div class="stat-big" id="stat-rate" style="margin-top: 0.5rem; font-size: 1.2rem">—</div>
+              <div style="font-size: 0.82rem; color: var(--muted)">Avg trust (validated)</div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 1rem; margin-bottom: 1rem" class="lib-split">
+            <div class="panel">
+              <h2>Achievements</h2>
+              <p class="inline-hint">Icons light up as you unlock milestones.</p>
+              <div class="badges-row" id="badges"></div>
+            </div>
+            <div class="panel">
+              <h2>Profile snapshot</h2>
+              <div style="display: flex; gap: 0.75rem; align-items: center">
+                <div class="avatar" style="width: 48px; height: 48px"></div>
+                <div>
+                  <strong id="lib-name">—</strong><br />
+                  <small id="lib-email" style="color: var(--muted)">—</small>
+                </div>
+              </div>
+              <p class="chart-title">Experience points</p>
+              <div id="lib-xp" style="font-family: var(--font-display); color: var(--cyan)">—</div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 1rem">
+            <div>
+              <h2 class="page-title" style="font-size: 1rem; letter-spacing: 0.08em">Library assets</h2>
+              <div id="apps-grid" class="apps-grid"></div>
+            </div>
+            <div class="panel">
+              <h2>Efficiency trend</h2>
+              <p class="inline-hint">Trust scores across your latest saves.</p>
+              <div id="eff-chart"></div>
+              <h2 style="margin-top: 1rem">Shortcuts</h2>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem">
+                <a class="btn btn-primary" href="/dashboard.html">Open generator</a>
+                <a class="btn btn-ghost" href="/comparison.html">Compare versions</a>
+              </div>
+            </div>
+          </div>
+        </main>
+        <p class="footer-note">© IteraGen · Library</p>
+      </div>
+    </div>
+    <style>
+      @media (max-width: 900px) {
+        .lib-split,
+        main > div:last-of-type {
+          grid-template-columns: 1fr !important;
+        }
+      }
+    </style>
+    <script src="/js/api.js"></script>
+    <script src="/js/charts.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/auth-guard.js"></script>
+    <script src="/js/library.js"></script>
+  </body>
+</html>
